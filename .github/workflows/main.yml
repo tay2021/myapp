@@ -28,10 +28,7 @@ jobs:
         if: success() || failure()
         with:
           name: report
-          path:
-            -log.html
-            -output.xml
-            -report.html
+          path: report/
 
           
 
