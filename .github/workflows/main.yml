@@ -9,7 +9,16 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: |
-        python3 -m venv .venv
-        source .venv/bin/activate
-      
+      - name: Cache virtualenv
+        uses: actions/cache@v3
+        with:
+          key: venv-${{ runner.os }}-${{ steps.setup_python.outputs.python-version}}-${{ hashFiles('requirements.txt') }}
+          path: .venv
+
+      - name: install dependencies
+        run: |
+          python3 -m venv .venv
+          source .venv/bin/activate
+          python3 -m pip3 install -r requirements.txt
+          
+
