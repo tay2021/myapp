@@ -27,7 +27,7 @@ jobs:
           robot --outputdir report testcases/
 
       - name: generate test report
-        uses: actions/uploads-artifact@v4
+        uses: actions/upload-artifact@v4
         if: success() || failure()
         with:
           name: report
